@@ -163,39 +163,40 @@
     <style>
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
             height: 100vh;
             margin: 0;
             background: url("https://images.unsplash.com/photo-1529245019870-59b6f269a648?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHBheW1lbnR8ZW58MHx8fHwxNjE4MDY1NzQ0&ixlib=rb-1.2.1&q=80&w=1080") no-repeat center center fixed;
             background-size: cover;
         }
         
-        .sidebar {
-            height: 100%;
-            width: 250px;
+        .navbar {
+            width: 100%;
+            background-color: #343a40;
+            overflow: hidden;
+            padding: 10px 0;
             position: fixed;
             top: 0;
             left: 0;
-            background-color: #343a40;
-            padding-top: 20px;
+            z-index: 1000;
         }
         
-        .sidebar a {
-            padding: 10px 15px;
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
             text-decoration: none;
             font-size: 1.25rem;
-            color: #777340;
-            display: block;
-            transition: background-color 0.3s;
         }
         
-        .sidebar a:hover {
-            background-color: #3a4b5b;
+        .navbar a:hover {
+            background-color: #575d63;
         }
         
         .container {
-            margin-left: 270px;
-            /* Adjust according to sidebar width */
+            margin-top: 60px;
+            /* Space for navbar */
             background: rgba(255, 255, 255, 0.9);
             padding: 2rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -309,7 +310,7 @@
 </head>
 
 <body>
-    <div class="sidebar">
+    <div class="navbar">
         <a href="#home">Home</a>
         <a href="#services">Services</a>
         <a href="#clients">Clients</a>
@@ -351,7 +352,7 @@
     </div>
 
     <script>
-        document.querySelectorAll('.sidebar a').forEach(link => {
+        document.querySelectorAll('.navbar a').forEach(link => {
             link.addEventListener('click', function(event) {
                 event.preventDefault();
                 document.querySelectorAll('.container').forEach(container => {
