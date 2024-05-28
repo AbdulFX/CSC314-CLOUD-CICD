@@ -1,8 +1,13 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 8080;
+app.use(express.static("public"));
 
-app.get('/', (req, res) => res.send(' this is CSC 314 cloud computing DEVOPS ; CI-CD PIPELINE CREATED WITH AWS. YHIS PAGE INDICATES SUCCESS. OBI ISRAEL CHIBUIKE AND ABDULLAHI MOHAMMED, VUG/CS/21/5208 AND VUG/CSC/21/5157 '));
+// app.get("/", (req, res) =>
+//   res.send(
+//     " THIS IS CSC 314 CLOUD COMPUTING DEVOPS; CI-CD PIPELINE CREATED WITH AWS. THIS PAGE INDICATES SUCCESS. EKHATOR OSAYAME.VUG/CSC/21/5332"
+//   )
+// );
 
 app.listen(port);
 console.log(`App running on http://localhost:${port}`);
