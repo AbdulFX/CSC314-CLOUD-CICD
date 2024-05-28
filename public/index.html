@@ -2,249 +2,134 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NACOSS Dues Payment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASCOSS Dues Payment</title>
     <style>
         body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #f3f4f6, #e2e8f0);
-            /* Gradient background */
-        }
-        
-        .navbar {
-            width: 100%;
-            background-color: #1a202c;
-            padding: 10px 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-            font-size: 1.25rem;
-        }
-        
-        .navbar a:hover {
-            background-color: #2d3748;
+            padding: 0;
         }
         
         .container {
-            margin-top: 80px;
-            /* Space for navbar */
+            width: 50%;
+            margin: 50px auto;
             background: white;
-            padding: 2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            max-width: 600px;
-            /* Increased width */
-            width: 90%;
-            animation: fadeIn 1s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         
         h1 {
             text-align: center;
-            color: #1a202c;
-            margin-bottom: 2rem;
-            font-size: 1.75rem;
-        }
-        
-        form {
-            display: flex;
-            flex-direction: column;
+            color: #333;
         }
         
         label {
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #4a5568;
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
         }
         
-        input,
-        textarea {
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            border: 1px solid #cbd5e0;
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            transition: border-color 0.3s ease;
         }
         
-        input:focus,
-        textarea:focus {
-            border-color: #4299e1;
-            outline: none;
-        }
-        
-        .btn {
-            padding: 0.75rem;
-            font-size: 1rem;
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
             color: white;
-            background-color: #4299e1;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #218838;
+        }
+        
+        .loading {
             text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            color: #007bff;
         }
         
-        .btn:hover {
-            background-color: #3182ce;
-        }
-        
-        .btn.loading {
-            background-color: #a0aec0;
-            cursor: not-allowed;
-        }
-        
-        .btn.loading::after {
-            content: '';
-            width: 16px;
-            height: 16px;
-            border: 2px solid white;
-            border-top: 2px solid transparent;
-            border-radius: 50%;
-            display: inline-block;
-            margin-left: 8px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        
-        .success-message {
+        .hidden {
             display: none;
-            text-align: center;
-            color: #38a169;
-            margin-top: 1rem;
         }
         
-        .error-message {
-            display: none;
+        #invoice {
             text-align: center;
-            color: #e53e3e;
-            margin-top: 1rem;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
-    </div>
-
-    <div class="container" id="home">
-        <h1>NACOSS Dues Payment</h1>
-        <form id="paymentForm" action="https://payment-gateway-url" method="post">
+    <div class="container">
+        <h1>NASCOSS Dues Payment</h1>
+        <form id="paymentForm">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required />
+            <input type="text" id="name" name="name" required>
 
-            <label for="matric">MATRIC:</label>
-            <input type="text" id="matric" name="matric" required />
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
             <label for="amount">Amount:</label>
-            <input type="number" id="amount" name="amount" required min="0" step="0.01" />
+            <input type="number" id="amount" name="amount" required>
 
-            <button type="submit" class="btn" id="payNowBtn">Pay Now</button>
+            <button type="button" id="payNowButton">Pay Now</button>
         </form>
-        <div class="success-message" id="successMessage">Payment Successful!</div>
-        <div class="error-message" id="errorMessage">Payment Failed. Please try again.</div>
-    </div>
 
-    <div class="container" id="contact" style="display:none;">
-        <h1>Contact Us</h1>
-        <form id="contactForm">
-            <label for="contactName">Name:</label>
-            <input type="text" id="contactName" name="contactName" required />
+        <div id="loading" class="loading hidden">Processing...</div>
 
-            <label for="contactEmail">Email:</label>
-            <input type="email" id="contactEmail" name="contactEmail" required />
-
-            <label for="contactMessage">Message:</label>
-            <textarea id="contactMessage" name="contactMessage" rows="4" required></textarea>
-
-            <button type="submit" class="btn">Send Message</button>
-        </form>
+        <div id="invoice" class="hidden">
+            <h2>Invoice</h2>
+            <p id="invoiceDetails"></p>
+        </div>
     </div>
 
     <script>
-        document.querySelectorAll('.navbar a').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                document.querySelectorAll('.container').forEach(container => {
-                    container.style.display = 'none';
-                });
-                const targetId = this.getAttribute('href').substring(1);
-                document.getElementById(targetId).style.display = 'block';
-            });
+        document.getElementById('payNowButton').addEventListener('click', function() {
+            // Show loading indicator
+            document.getElementById('loading').classList.remove('hidden');
+
+            // Simulate payment processing
+            setTimeout(function() {
+                // Hide loading indicator
+                document.getElementById('loading').classList.add('hidden');
+
+                // Generate invoice
+                generateInvoice();
+            }, 2000);
         });
 
-        document.getElementById("paymentForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+        function generateInvoice() {
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const amount = document.getElementById('amount').value;
 
-            const name = document.getElementById("name").value;
-            const matric = document.getElementById("matric").value;
-            const amount = document.getElementById("amount").value;
-            const payNowBtn = document.getElementById("payNowBtn");
+            // Create invoice details
+            const invoiceDetails = `
+                Name: ${name}<br>
+                Email: ${email}<br>
+                Amount Paid: $${amount}<br>
+                Date: ${new Date().toLocaleDateString()}
+            `;
 
-            if (name && matric && amount) {
-                payNowBtn.classList.add('loading');
-                payNowBtn.disabled = true;
-
-                // Simulate a successful payment for demonstration
-                setTimeout(() => {
-                    document.getElementById("successMessage").style.display = "block";
-                    document.getElementById("errorMessage").style.display = "none";
-                    payNowBtn.classList.remove('loading');
-                    payNowBtn.disabled = false;
-                }, 2000);
-
-                // Here, you would normally handle the form submission to the payment gateway
-                // Example: this.submit();
-            } else {
-                document.getElementById("errorMessage").style.display = "block";
-                document.getElementById("successMessage").style.display = "none";
-            }
-        });
-
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            // Simulate form submission
-            alert("Message sent!");
-        });
+            // Display invoice
+            document.getElementById('invoiceDetails').innerHTML = invoiceDetails;
+            document.getElementById('invoice').classList.remove('hidden');
+        }
     </script>
 </body>
 
