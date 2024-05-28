@@ -200,7 +200,8 @@
             padding: 2rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            max-width: 400px;
+            max-width: 600px;
+            /* Increased width */
             width: 100%;
             animation: fadeIn 1s ease-in-out;
         }
@@ -232,7 +233,8 @@
             color: #495057;
         }
         
-        input {
+        input,
+        textarea {
             padding: 0.75rem;
             margin-bottom: 1rem;
             font-size: 1rem;
@@ -241,7 +243,8 @@
             transition: border-color 0.3s ease;
         }
         
-        input:focus {
+        input:focus,
+        textarea:focus {
             border-color: #007bff;
             outline: none;
         }
@@ -313,7 +316,7 @@
         <a href="#contact">Contact</a>
     </div>
 
-    <div class="container">
+    <div class="container" id="home">
         <h1>NACOSS Dues Payment</h1>
         <form id="paymentForm" action="https://payment-gateway-url" method="post">
             <label for="name">Name:</label>
@@ -328,41 +331,71 @@
             <button type="submit" class="btn" id="payNowBtn">Pay Now</button>
         </form>
         <div class="success-message" id="successMessage">Payment Successful!</div>
-        <div class="error-message" id="errorMessage">
-            Payment Failed. Please try again.
-        </div>
+        <div class="error-message" id="errorMessage">Payment Failed. Please try again.</div>
+    </div>
+
+    <div class="container" id="contact" style="display:none;">
+        <h1>Contact Us</h1>
+        <form id="contactForm">
+            <label for="contactName">Name:</label>
+            <input type="text" id="contactName" name="contactName" required />
+
+            <label for="contactEmail">Email:</label>
+            <input type="email" id="contactEmail" name="contactEmail" required />
+
+            <label for="contactMessage">Message:</label>
+            <textarea id="contactMessage" name="contactMessage" rows="4" required></textarea>
+
+            <button type="submit" class="btn">Send Message</button>
+        </form>
     </div>
 
     <script>
-        document
-            .getElementById("paymentForm")
-            .addEventListener("submit", function(event) {
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', function(event) {
                 event.preventDefault();
-
-                const name = document.getElementById("name").value;
-                const matric = document.getElementById("matric").value;
-                const amount = document.getElementById("amount").value;
-                const payNowBtn = document.getElementById("payNowBtn");
-
-                if (name && matric && amount) {
-                    payNowBtn.classList.add('loading');
-                    payNowBtn.disabled = true;
-
-                    // Simulate a successful payment for demonstration
-                    setTimeout(() => {
-                        document.getElementById("successMessage").style.display = "block";
-                        document.getElementById("errorMessage").style.display = "none";
-                        payNowBtn.classList.remove('loading');
-                        payNowBtn.disabled = false;
-                    }, 2000);
-
-                    // Here, you would normally handle the form submission to the payment gateway
-                    // Example: this.submit();
-                } else {
-                    document.getElementById("errorMessage").style.display = "block";
-                    document.getElementById("successMessage").style.display = "none";
-                }
+                document.querySelectorAll('.container').forEach(container => {
+                    container.style.display = 'none';
+                });
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).style.display = 'block';
             });
+        });
+
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const matric = document.getElementById("matric").value;
+            const amount = document.getElementById("amount").value;
+            const payNowBtn = document.getElementById("payNowBtn");
+
+            if (name && matric && amount) {
+                payNowBtn.classList.add('loading');
+                payNowBtn.disabled = true;
+
+                // Simulate a successful payment for demonstration
+                setTimeout(() => {
+                    document.getElementById("successMessage").style.display = "block";
+                    document.getElementById("errorMessage").style.display = "none";
+                    payNowBtn.classList.remove('loading');
+                    payNowBtn.disabled = false;
+                }, 2000);
+
+                // Here, you would normally handle the form submission to the payment gateway
+                // Example: this.submit();
+            } else {
+                document.getElementById("errorMessage").style.display = "block";
+                document.getElementById("successMessage").style.display = "none";
+            }
+        });
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Simulate form submission
+            alert("Message sent!");
+        });
     </script>
 </body>
 
