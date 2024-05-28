@@ -13,19 +13,19 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f4f4f9;
-            /* Nice matured background color */
+            background: linear-gradient(135deg, #f3f4f6, #e2e8f0);
+            /* Gradient background */
         }
         
         .navbar {
             width: 100%;
-            background-color: #343a40;
-            overflow: hidden;
+            background-color: #1a202c;
             padding: 10px 0;
-            position: flex;
+            position: fixed;
             top: 0;
             left: 0;
             z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .navbar a {
@@ -39,19 +39,19 @@
         }
         
         .navbar a:hover {
-            background-color: #575d63;
+            background-color: #2d3748;
         }
         
         .container {
-            margin-top: 60px;
+            margin-top: 80px;
             /* Space for navbar */
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
             padding: 2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             max-width: 600px;
             /* Increased width */
-            width: 100%;
+            width: 90%;
             animation: fadeIn 1s ease-in-out;
         }
         
@@ -66,7 +66,7 @@
         
         h1 {
             text-align: center;
-            color: #343a40;
+            color: #1a202c;
             margin-bottom: 2rem;
             font-size: 1.75rem;
         }
@@ -79,7 +79,7 @@
         label {
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: #495057;
+            color: #4a5568;
         }
         
         input,
@@ -87,22 +87,22 @@
             padding: 0.75rem;
             margin-bottom: 1rem;
             font-size: 1rem;
-            border: 1px solid #ced4da;
+            border: 1px solid #cbd5e0;
             border-radius: 5px;
             transition: border-color 0.3s ease;
         }
         
         input:focus,
         textarea:focus {
-            border-color: #007bff;
+            border-color: #4299e1;
             outline: none;
         }
         
         .btn {
             padding: 0.75rem;
             font-size: 1rem;
-            color: #fff;
-            background-color: #007bff;
+            color: white;
+            background-color: #4299e1;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -112,11 +112,11 @@
         }
         
         .btn:hover {
-            background-color: #0056b3;
+            background-color: #3182ce;
         }
         
         .btn.loading {
-            background-color: #6c757d;
+            background-color: #a0aec0;
             cursor: not-allowed;
         }
         
@@ -124,7 +124,7 @@
             content: '';
             width: 16px;
             height: 16px;
-            border: 2px solid #fff;
+            border: 2px solid white;
             border-top: 2px solid transparent;
             border-radius: 50%;
             display: inline-block;
@@ -144,14 +144,14 @@
         .success-message {
             display: none;
             text-align: center;
-            color: #28a745;
+            color: #38a169;
             margin-top: 1rem;
         }
         
         .error-message {
             display: none;
             text-align: center;
-            color: #dc3545;
+            color: #e53e3e;
             margin-top: 1rem;
         }
     </style>
